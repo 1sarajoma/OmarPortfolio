@@ -147,6 +147,7 @@ const EXPERIENCES = [
 export default function ExperiencePage() {
   const router = useRouter();
   const [entered, setEntered] = useState(false);
+  const [backHovered, setBackHovered] = useState(false);
 
   useEffect(() => { requestAnimationFrame(() => setEntered(true)); }, []);
 
@@ -156,22 +157,29 @@ export default function ExperiencePage() {
       width: "100vw",
       display: "flex",
       flexDirection: "column",
-      background: "linear-gradient(180deg, #9dd9ef 0%, #cdeefa 40%, #eaf8ff 100%)",
+      background: "#000",
       fontFamily: "var(--font-wii), sans-serif",
       position: "relative",
       overflow: "hidden",
     }}>
 
-      {/* Wii Sports logo watermark */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/RSPE01/tex1_512x256_fa4e897a8e21f9e1_14.png"
-        alt=""
+      {/* Background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
         style={{
-          position: "absolute", right: "2.5rem", bottom: "1.5rem",
-          width: "220px", opacity: 0.07, pointerEvents: "none", zIndex: 0,
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: 0,
         }}
-      />
+      >
+        <source src="/wsresort.mp4" type="video/mp4" />
+      </video>
 
       {/* ── Header ── */}
       <header style={{
@@ -182,42 +190,96 @@ export default function ExperiencePage() {
         padding: "0.85rem 2.5rem",
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
         zIndex: 10,
         position: "relative",
+        gap: "1.4rem",
       }}>
+        {/* Wii-style back button: circle + grey arrow badge */}
+        <button
+          onClick={() => router.push("/")}
+          onMouseEnter={() => setBackHovered(true)}
+          onMouseLeave={() => setBackHovered(false)}
+          style={{
+            position: "relative",
+            display: "flex",
+            alignItems: "center",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+            height: 64,
+            flexShrink: 0,
+            marginLeft: "calc(-2.5rem - 30px)",
+          }}
+        >
+          {/* Grey arrow-shaped badge — extends past circle off screen to the left */}
+          <div style={{
+            background: backHovered
+              ? "linear-gradient(rgba(102,214,229,0.52), rgba(102,214,229,0.52)), linear-gradient(180deg, #868686 0%, #5c5c5c 50%, #4a4a4a 100%)"
+              : "linear-gradient(180deg, #868686 0%, #5c5c5c 50%, #4a4a4a 100%)",
+            height: 38,
+            paddingLeft: 165,
+            paddingRight: 20,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            marginLeft: -50,
+            clipPath: "polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.18), 0 2px 5px rgba(0,0,0,0.45)",
+            transition: "background 0.1s ease-out",
+          }}>
+            {/* B button icon — cropped from icon sprite sheet */}
+            <div style={{
+              width: 21,
+              height: 28,
+              backgroundImage: "url('/RSPE01/tex1_512x32_d1413bb8187a8df9_0.png')",
+              backgroundSize: `${512 * (28 / 32)}px ${28}px`,
+              backgroundPosition: `-24px 0`,
+              backgroundRepeat: "no-repeat",
+              flexShrink: 0,
+            }} />
+            <WiiText text="Back" scale={0.9} glyphFilter="none" />
+          </div>
 
-        {/* Left: back + title */}
-        <div style={{ display: "flex", alignItems: "center", gap: "1.4rem" }}>
-          <button
-            className="wii-button"
-            onClick={() => router.push("/")}
-            style={{ width: 100, height: 36, flexShrink: 0 }}
-          >
-            <span style={{ position: "relative", zIndex: 1 }}>
-              <WiiText text="Back" scale={0.95} />
-            </span>
-          </button>
-          <WiiText text="Career Record" scale={1.6} />
-        </div>
-
-        {/* Right: stats */}
-        <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
-          {([
-            { value: "3",   label: "POSITIONS"    },
-            { value: "2",   label: "INTERNSHIPS"  },
-            { value: "10+", label: "TECHNOLOGIES" },
-          ] as const).map(stat => (
-            <div key={stat.label} style={{ textAlign: "center" }}>
-              <div style={{ fontSize: "2rem", fontWeight: 800, color: "#2ba8c0", lineHeight: 1 }}>
-                {stat.value}
-              </div>
-              <div style={{ fontSize: "0.58rem", letterSpacing: "0.12em", color: "#999", marginTop: "0.15rem" }}>
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
+          {/* Silver circle with back arrow */}
+          <div style={{
+            position: "absolute",
+            left: 50,
+            top: "50%",
+            transform: backHovered ? "translateY(-50%) scale(1.13)" : "translateY(-50%) scale(1)",
+            transition: "transform 0.1s ease-out",
+            width: 64,
+            height: 64,
+            backgroundImage: "url('/RSPE01/tex1_64x64_2f3a0f47a8e13cb4_3.png')",
+            backgroundSize: "100% 100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 1,
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/RSPE01/tex1_32x32_b5e9b9843d63fe5b_2.png"
+              alt=""
+              width={28}
+              height={28}
+              style={{ display: "block", filter: "brightness(0.3)" }}
+            />
+            {backHovered && (
+              <div style={{
+                position: "absolute",
+                inset: 0,
+                background: "rgba(102,214,229,0.52)",
+                maskImage: "url('/RSPE01/tex1_64x64_2f3a0f47a8e13cb4_3.png')",
+                maskSize: "100% 100%",
+                WebkitMaskImage: "url('/RSPE01/tex1_64x64_2f3a0f47a8e13cb4_3.png')",
+                WebkitMaskSize: "100% 100%",
+                pointerEvents: "none",
+              }} />
+            )}
+          </div>
+        </button>
+        <WiiText text="Career Record" scale={1.6} />
       </header>
 
       {/* ── Scrollable cards ── */}
@@ -357,20 +419,6 @@ export default function ExperiencePage() {
           </div>
         ))}
 
-        {/* Bottom Mii silhouette decorations */}
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "3rem",
-          marginTop: "0.5rem",
-          opacity: 0.12,
-          pointerEvents: "none",
-        }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/RSPE01/tex1_512x256_480c03c9ce52db2e_14.png" alt="" style={{ width: "200px" }} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/RSPE01/tex1_512x256_8ed18833fab4807e_14.png" alt="" style={{ width: "200px" }} />
-        </div>
       </div>
     </main>
   );

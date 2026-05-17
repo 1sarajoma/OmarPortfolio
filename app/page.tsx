@@ -438,6 +438,17 @@ export default function Home() {
         ) : hovered ? (
           <div style={{ textAlign: "center" }}>
             <WiiText text={SECTIONS.find(s => s.id === hovered)?.label ?? ""} scale={2.2} glyphFilter="none" />
+            {hovered === "experience" && (
+              <p style={{
+                fontFamily: "var(--font-wii)",
+                fontSize:   "0.9rem",
+                color:      "#fff",
+                marginTop:  "0.6rem",
+                opacity:    0.8,
+              }}>
+                Click on the Experience button to view my technical experience
+              </p>
+            )}
           </div>
         ) : (
           <div style={{ textAlign: "center" }}>
