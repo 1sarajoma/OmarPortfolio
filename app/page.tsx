@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 type SectionId = "summary" | "experience" | "projects" | "skills" | "contact";
 
@@ -345,6 +346,7 @@ const PREVIEW_MAP: Record<SectionId, React.ReactNode> = {
 /* ─── Page ─── */
 
 export default function Home() {
+  const router   = useRouter();
   const [active,  setActive]  = useState<SectionId>("summary");
   const [hovered, setHovered] = useState<SectionId | null>(null);
 
@@ -383,7 +385,7 @@ export default function Home() {
                 key={s.id}
                 className={`wii-button flex-none ${isHighlighted(s.id) ? "highlighted" : ""}`}
                 style={{ height: "calc((100% - 36px) / 4 * 0.75)" }}
-                onClick={() => setActive(s.id)}
+                onClick={() => s.id === "experience" ? router.push("/experience") : setActive(s.id)}
                 onMouseEnter={() => setHovered(s.id)}
                 onMouseLeave={() => setHovered(null)}
               >
