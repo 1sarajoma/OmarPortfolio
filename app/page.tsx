@@ -385,7 +385,7 @@ export default function Home() {
                 key={s.id}
                 className={`wii-button flex-none ${isHighlighted(s.id) ? "highlighted" : ""}`}
                 style={{ height: "calc((100% - 36px) / 4 * 0.75)" }}
-                onClick={() => s.id === "experience" ? router.push("/experience") : setActive(s.id)}
+                onClick={() => s.id === "experience" ? router.push("/experience") : s.id === "projects" ? router.push("/projects") : setActive(s.id)}
                 onMouseEnter={() => setHovered(s.id)}
                 onMouseLeave={() => setHovered(null)}
               >
@@ -447,6 +447,17 @@ export default function Home() {
                 opacity:    0.8,
               }}>
                 Click on the Experience button to view my technical experience
+              </p>
+            )}
+            {hovered === "projects" && (
+              <p style={{
+                fontFamily: "var(--font-wii)",
+                fontSize:   "0.9rem",
+                color:      "#fff",
+                marginTop:  "0.6rem",
+                opacity:    0.8,
+              }}>
+                Click on the Projects button to view projects I have worked on
               </p>
             )}
           </div>
