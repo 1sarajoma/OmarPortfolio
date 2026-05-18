@@ -594,24 +594,6 @@ export default function ProjectsPage() {
                 ))}
               </div>
 
-              {/* Focus areas */}
-              <p style={{ fontSize: "0.59rem", letterSpacing: "0.12em", color: "#c0c0c0", marginBottom: "0.45rem" }}>
-                FOCUS
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.38rem", marginBottom: "0.8rem" }}>
-                {proj.focus.map(f => (
-                  <span key={f} style={{
-                    background: "rgba(78,196,219,0.1)",
-                    color: "#1a9ab8",
-                    border: "1px solid rgba(78,196,219,0.22)",
-                    borderRadius: "999px",
-                    padding: "0.18rem 0.75rem",
-                    fontSize: "0.75rem",
-                  }}>
-                    {f}
-                  </span>
-                ))}
-              </div>
 
               {/* Tech stack */}
               <p style={{ fontSize: "0.59rem", letterSpacing: "0.12em", color: "#c0c0c0", marginBottom: "0.45rem" }}>
@@ -632,10 +614,10 @@ export default function ProjectsPage() {
               onMouseLeave={() => setHoveredImgBtn(null)}
               style={{
                 position: "absolute",
-                bottom: 30,
-                right: 230,
-                width: 153,
-                height: 116,
+                bottom: 2,
+                right: 260,
+                width: 140,
+                height: 107,
                 backgroundImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')",
                 backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
@@ -651,7 +633,7 @@ export default function ProjectsPage() {
                 opacity: PROJECT_IMAGES[proj.id]?.length ? 1 : 0.4,
               }}
             >
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#334155" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+              <svg width="37" height="37" viewBox="0 0 24 24" fill="none" stroke="#334155" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                 <circle cx="12" cy="13" r="4"/>
               </svg>
