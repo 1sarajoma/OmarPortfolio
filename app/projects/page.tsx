@@ -81,6 +81,110 @@ function WiiText({ text, scale = 1.3, gap = 3, glyphFilter = "invert(1)" }: {
   );
 }
 
+/* ─── Tech stack tiles ─── */
+
+const SIMPLE_ICONS: Record<string, string> = {
+  "React":         "https://cdn.simpleicons.org/react/1a1a1a",
+  "JSX":           "https://cdn.simpleicons.org/react/1a1a1a",
+  "TypeScript":    "https://cdn.simpleicons.org/typescript/1a1a1a",
+  "JavaScript":    "https://cdn.simpleicons.org/javascript/1a1a1a",
+  "Python":        "https://cdn.simpleicons.org/python/1a1a1a",
+  "Next.js":       "https://cdn.simpleicons.org/nextdotjs/1a1a1a",
+  "Tailwind CSS":  "https://cdn.simpleicons.org/tailwindcss/1a1a1a",
+  "Vite":          "https://cdn.simpleicons.org/vite/1a1a1a",
+  "Arduino":       "https://cdn.simpleicons.org/arduino/1a1a1a",
+  "C++":           "https://cdn.simpleicons.org/cplusplus/1a1a1a",
+  "Git":           "https://cdn.simpleicons.org/git/1a1a1a",
+  "Vercel":        "https://cdn.simpleicons.org/vercel/1a1a1a",
+  "Raspberry Pi":  "https://cdn.simpleicons.org/raspberrypi/1a1a1a",
+  "Google Gemini": "https://cdn.simpleicons.org/googlegemini/1a1a1a",
+  "ElevenLabs":    "https://cdn.simpleicons.org/elevenlabs/1a1a1a",
+  "Make.com":      "https://cdn.simpleicons.org/make/1a1a1a",
+  "STM32":         "https://cdn.simpleicons.org/stmicroelectronics/1a1a1a",
+  "STM32CubeIDE":  "https://cdn.simpleicons.org/stmicroelectronics/1a1a1a",
+  "Cloudinary":    "https://cdn.simpleicons.org/cloudinary/1a1a1a",
+};
+
+const LOCAL_LOGOS: Record<string, { src: string; filter: string; cropTop?: number }> = {
+  "C":         { src: "/logos/image.png",         filter: "grayscale(1) brightness(0.75) contrast(100)" },
+  "Salesforce": { src: "/logos/image copy.png",   filter: "grayscale(1) brightness(0.75) contrast(100)" },
+  "CSS-in-JS":  { src: "/logos/image copy 2.png", filter: "grayscale(1) brightness(0.75) contrast(100)" },
+  "Pygame":     { src: "/logos/image copy 3.png", filter: "grayscale(1) brightness(0.6)" },
+};
+
+const SVG_FB = { viewBox: "0 0 24 24" as const, width: 22, height: 22, fill: "none" as const, stroke: "#1a1a1a", strokeWidth: 1.7, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+
+function getTechIcon(tech: string): React.ReactNode {
+  if (tech in LOCAL_LOGOS) {
+    const { src, filter, cropTop } = LOCAL_LOGOS[tech];
+    if (cropTop) {
+      return (
+        <div style={{ width: 22, height: 22, overflow: "hidden", flexShrink: 0, position: "relative" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={src} alt="" style={{ display: "block", filter, height: 36, width: "auto", position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)" }} />
+        </div>
+      );
+    }
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={src} width={22} height={22} alt="" style={{ display: "block", filter }} />;
+  }
+  if (tech in SIMPLE_ICONS) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={SIMPLE_ICONS[tech]} width={22} height={22} alt="" style={{ display: "block" }} />;
+  }
+  switch (tech) {
+    case "Embedded Systems":
+      return <svg {...SVG_FB}><rect x="5" y="7" width="14" height="10" rx="1.5"/><line x1="9" y1="7" x2="9" y2="4"/><line x1="12" y1="7" x2="12" y2="4"/><line x1="15" y1="7" x2="15" y2="4"/><line x1="9" y1="17" x2="9" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/><line x1="15" y1="17" x2="15" y2="20"/><line x1="5" y1="11" x2="2" y2="11"/><line x1="5" y1="13" x2="2" y2="13"/><line x1="19" y1="11" x2="22" y2="11"/><line x1="19" y1="13" x2="22" y2="13"/></svg>;
+    case "REST APIs":
+      return <svg {...SVG_FB}><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="12" r="2.5"/><circle cx="5" cy="19" r="2.5"/><path d="M7.5 5h4l5 7"/><path d="M7.5 19h4l5-7"/></svg>;
+    case "LocalStorage API":
+      return <svg {...SVG_FB}><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>;
+    case "Sprite Sheets":
+      return <svg {...SVG_FB}><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg>;
+    case "Canvas API":
+      return <svg {...SVG_FB}><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M7 21h10M12 17v4"/><path d="M8 10l2-2 3 3 2-2 3 3"/></svg>;
+    case "UI Development":
+      return <svg {...SVG_FB}><rect x="2" y="3" width="20" height="15" rx="2"/><line x1="6" y1="9" x2="18" y2="9"/><line x1="6" y1="13" x2="13" y2="13"/><line x1="2" y1="21" x2="22" y2="21"/></svg>;
+    default:
+      return <svg {...SVG_FB}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="14" x2="15" y2="14"/></svg>;
+  }
+}
+
+function TechTile({ tech }: { tech: string }) {
+  return (
+    <div style={{
+      width: 66,
+      height: 60,
+      backgroundImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')",
+      backgroundSize: "100% 100%",
+      backgroundRepeat: "no-repeat",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: 4,
+      flexShrink: 0,
+      cursor: "default",
+      userSelect: "none",
+    }}>
+      {getTechIcon(tech)}
+      <span style={{
+        fontSize: "0.5rem",
+        color: "#1a1a1a",
+        fontWeight: 700,
+        textAlign: "center",
+        lineHeight: 1.15,
+        maxWidth: 58,
+        wordBreak: "break-word",
+        fontFamily: "sans-serif",
+        letterSpacing: "0.01em",
+      }}>
+        {tech}
+      </span>
+    </div>
+  );
+}
+
 /* ─── Data ─── */
 
 const PROJECTS = [
@@ -214,10 +318,19 @@ const PROJECTS = [
       "Implemented client-side routing with Next.js App Router for experience and project detail pages",
       "Structured the entire UI using inline CSS-in-JS with no external component libraries",
     ],
-    tech: ["Next.js", "TypeScript", "Canvas API", "Sprite Sheets", "CSS-in-JS"],
+    tech: ["Next.js", "TypeScript", "Canvas API", "CSS-in-JS"],
     focus: ["UI/UX Design", "Frontend Engineering", "Motion Design"],
   },
 ] as const;
+
+const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
+  "pawprint": [
+    { src: "/project_images/pawprint/ppmenu.jpg",     caption: "The landing page for PawPrint, here users can start a pet profile or view other pets." },
+    { src: "/project_images/pawprint/pp_form.jpg",    caption: "The form that volunteers would fill out for completing pet profiles." },
+    { src: "/project_images/pawprint/pp_profile.jpg", caption: "The profile of the pet, generated from the completed pet form." },
+    { src: "/project_images/pawprint/pp_captions.jpg",caption: "Sample social media captions for the pet, optimized for different social media." },
+  ],
+};
 
 /* ─── Page ─── */
 
@@ -226,8 +339,25 @@ export default function ProjectsPage() {
   const [entered, setEntered] = useState(false);
   const [backHovered, setBackHovered] = useState(false);
   const [hoveredGithub, setHoveredGithub] = useState<string | null>(null);
+  const [lightboxId,    setLightboxId]    = useState<string | null>(null);
+  const [lightboxIdx,   setLightboxIdx]   = useState(0);
+  const [hoveredImgBtn, setHoveredImgBtn] = useState<string | null>(null);
+  const [closeHovered,  setCloseHovered]  = useState(false);
+  const [hoveredNav,    setHoveredNav]    = useState<"prev" | "next" | null>(null);
 
   useEffect(() => { requestAnimationFrame(() => setEntered(true)); }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!lightboxId) return;
+      const imgs = PROJECT_IMAGES[lightboxId] ?? [];
+      if (e.key === "Escape") { setLightboxId(null); return; }
+      if (e.key === "ArrowRight" && lightboxIdx < imgs.length - 1) setLightboxIdx(i => i + 1);
+      if (e.key === "ArrowLeft"  && lightboxIdx > 0)               setLightboxIdx(i => i - 1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxId, lightboxIdx]);
 
   return (
     <main style={{
@@ -374,18 +504,23 @@ export default function ProjectsPage() {
           <div
             key={proj.id}
             style={{
-              background: "rgba(255,255,255,0.88)",
-              backdropFilter: "blur(8px)",
-              borderRadius: "1.5rem",
-              border: "1.5px solid rgba(255,255,255,0.75)",
-              boxShadow: "0 8px 28px rgba(0,60,120,0.13), 0 2px 8px rgba(0,40,90,0.07)",
-              overflow: "hidden",
+              position: "relative",
               flexShrink: 0,
               opacity: entered ? 1 : 0,
               transform: entered ? "translateY(0)" : "translateY(20px)",
               transition: `opacity 0.4s ease ${i * 0.07}s, transform 0.4s ease ${i * 0.07}s`,
             }}
           >
+            <div
+              style={{
+                background: "rgba(255,255,255,0.88)",
+                backdropFilter: "blur(8px)",
+                borderRadius: "1.5rem",
+                border: "1.5px solid rgba(255,255,255,0.75)",
+                boxShadow: "0 8px 28px rgba(0,60,120,0.13), 0 2px 8px rgba(0,40,90,0.07)",
+                overflow: "hidden",
+              }}
+            >
             {/* Card header bar */}
             <div style={{
               background: "linear-gradient(135deg, #4ec4db 0%, #29a4c2 100%)",
@@ -482,24 +617,209 @@ export default function ProjectsPage() {
               <p style={{ fontSize: "0.59rem", letterSpacing: "0.12em", color: "#c0c0c0", marginBottom: "0.45rem" }}>
                 TECH STACK
               </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.38rem" }}>
-                {proj.tech.map(t => (
-                  <span key={t} style={{
-                    background: "rgba(139,92,246,0.08)",
-                    color: "#7c3aed",
-                    border: "1px solid rgba(139,92,246,0.2)",
-                    borderRadius: "999px",
-                    padding: "0.18rem 0.75rem",
-                    fontSize: "0.75rem",
-                  }}>
-                    {t}
-                  </span>
-                ))}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem" }}>
+                {proj.tech.map(t => <TechTile key={t} tech={t} />)}
               </div>
             </div>
+            </div>
+            {/* Image gallery button */}
+            <button
+              onClick={() => {
+                const imgs = PROJECT_IMAGES[proj.id];
+                if (imgs && imgs.length > 0) { setLightboxId(proj.id); setLightboxIdx(0); }
+              }}
+              onMouseEnter={() => setHoveredImgBtn(proj.id)}
+              onMouseLeave={() => setHoveredImgBtn(null)}
+              style={{
+                position: "absolute",
+                bottom: 30,
+                right: 230,
+                width: 153,
+                height: 116,
+                backgroundImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')",
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
+                border: "none",
+                outline: "none",
+                cursor: PROJECT_IMAGES[proj.id]?.length ? "pointer" : "default",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                transform: hoveredImgBtn === proj.id && PROJECT_IMAGES[proj.id]?.length ? "translateY(-2px) scale(1.05)" : "none",
+                transition: "transform 0.08s ease-out",
+                zIndex: 2,
+                opacity: PROJECT_IMAGES[proj.id]?.length ? 1 : 0.4,
+              }}
+            >
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#334155" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+              {hoveredImgBtn === proj.id && !!PROJECT_IMAGES[proj.id]?.length && (
+                <div style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "rgba(102,214,229,0.52)",
+                  maskImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')",
+                  maskSize: "100% 100%",
+                  WebkitMaskImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')",
+                  WebkitMaskSize: "100% 100%",
+                  pointerEvents: "none",
+                }} />
+              )}
+            </button>
           </div>
         ))}
       </div>
+      {/* ── Lightbox ── */}
+      {lightboxId && (() => {
+        const imgs = PROJECT_IMAGES[lightboxId] ?? [];
+        if (imgs.length === 0) return null;
+        const img = imgs[lightboxIdx];
+        return (
+          <div
+            onClick={() => { setLightboxId(null); setCloseHovered(false); }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.82)",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              zIndex: 500,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              onClick={e => e.stopPropagation()}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "0.9rem",
+                maxWidth: "min(82vw, 960px)",
+                width: "100%",
+              }}
+            >
+              {/* Image with close + counter overlaid at corners */}
+              <div style={{ position: "relative", maxWidth: "100%", display: "inline-block" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={img.src}
+                  alt={img.caption}
+                  style={{
+                    maxHeight: "58vh",
+                    maxWidth: "100%",
+                    objectFit: "contain",
+                    borderRadius: "0.75rem",
+                    boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+                    display: "block",
+                  }}
+                />
+                {/* Close — top-left corner of image */}
+                <button
+                  onClick={() => { setLightboxId(null); setCloseHovered(false); }}
+                  onMouseEnter={() => setCloseHovered(true)}
+                  onMouseLeave={() => setCloseHovered(false)}
+                  style={{ position: "absolute", top: -40, left: 6, background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}
+                >
+                  <svg width={36} height={36} viewBox="0 0 44 44" fill="none" style={{ display: "block", opacity: closeHovered ? 0.55 : 1, transition: "opacity 0.12s ease-out" }}>
+                    <circle cx={22} cy={22} r={19} stroke="white" strokeWidth={2.5}/>
+                    <line x1={13} y1={13} x2={31} y2={31} stroke="white" strokeWidth={2.5} strokeLinecap="round"/>
+                    <line x1={31} y1={13} x2={13} y2={31} stroke="white" strokeWidth={2.5} strokeLinecap="round"/>
+                  </svg>
+                </button>
+                {/* Counter — top-right corner of image */}
+                <span style={{
+                  position: "absolute", top: -30, right: 12,
+                  color: "rgba(255,255,255,0.7)", fontSize: "1rem", fontFamily: "sans-serif",
+                  textShadow: "0 1px 4px rgba(0,0,0,0.6)",
+                }}>
+                  {lightboxIdx + 1} / {imgs.length}
+                </span>
+              </div>
+
+              {/* Caption */}
+              <p style={{
+                color: "rgba(255,255,255,0.82)",
+                fontSize: "0.86rem",
+                textAlign: "center",
+                maxWidth: "620px",
+                lineHeight: 1.6,
+                fontFamily: "sans-serif",
+              }}>
+                {img.caption}
+              </p>
+
+              {/* Navigation */}
+              <div style={{ display: "flex", gap: "1.2rem", alignItems: "center" }}>
+                {lightboxIdx > 0 && (
+                  <button
+                    onClick={() => setLightboxIdx(i => i - 1)}
+                    onMouseEnter={() => setHoveredNav("prev")}
+                    onMouseLeave={() => setHoveredNav(null)}
+                    style={{
+                      width: 72, height: 55,
+                      backgroundImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')",
+                      backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",
+                      border: "none", outline: "none", cursor: "pointer",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      transform: hoveredNav === "prev" ? "translateY(-2px) scale(1.05)" : "none",
+                      transition: "transform 0.08s ease-out",
+                      position: "relative",
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#334155" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                    {hoveredNav === "prev" && (
+                      <div style={{
+                        position: "absolute", inset: 0,
+                        background: "rgba(102,214,229,0.52)",
+                        maskImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')", maskSize: "100% 100%",
+                        WebkitMaskImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')", WebkitMaskSize: "100% 100%",
+                        pointerEvents: "none",
+                      }} />
+                    )}
+                  </button>
+                )}
+                {lightboxIdx < imgs.length - 1 && (
+                  <button
+                    onClick={() => setLightboxIdx(i => i + 1)}
+                    onMouseEnter={() => setHoveredNav("next")}
+                    onMouseLeave={() => setHoveredNav(null)}
+                    style={{
+                      width: 72, height: 55,
+                      backgroundImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')",
+                      backgroundSize: "100% 100%", backgroundRepeat: "no-repeat",
+                      border: "none", outline: "none", cursor: "pointer",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      transform: hoveredNav === "next" ? "translateY(-2px) scale(1.05)" : "none",
+                      transition: "transform 0.08s ease-out",
+                      position: "relative",
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#334155" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                    {hoveredNav === "next" && (
+                      <div style={{
+                        position: "absolute", inset: 0,
+                        background: "rgba(102,214,229,0.52)",
+                        maskImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')", maskSize: "100% 100%",
+                        WebkitMaskImage: "url('/tex1_168x128_2dc2b15cda7148e3_5.png')", WebkitMaskSize: "100% 100%",
+                        pointerEvents: "none",
+                      }} />
+                    )}
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </main>
   );
 }
