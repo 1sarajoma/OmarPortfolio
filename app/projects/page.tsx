@@ -90,6 +90,7 @@ const PROJECTS = [
     subtitle: "AI-Powered Adoption Campaign Platform",
     badge: "AI",
     badgeColor: "#10b981",
+    github: "https://github.com/Jarank-git/HackCanada2026",
     overview: "PawPrint helps shelter volunteers generate polished, platform-ready adoption campaigns using AI-generated captions, automated media optimization, and downloadable social media packs.",
     highlights: [
       "Built a multi-step upload workflow for managing pet profiles, photos, and videos",
@@ -108,6 +109,7 @@ const PROJECTS = [
     subtitle: "Sustainability Scanner for Canadian Shoppers",
     badge: "DATA",
     badgeColor: "#db2777",
+    github: "https://github.com/Jarank-git/GenAI2026",
     overview: "EcoLens is a sustainability-focused shopping assistant that calculates the environmental and financial impact of products using live pricing, localized data, and AI-powered analysis.",
     highlights: [
       "Developed barcode, label, and receipt scanning workflows for product analysis",
@@ -126,6 +128,7 @@ const PROJECTS = [
     subtitle: "Real-Time Robotics Telemetry Platform",
     badge: "ROBOTICS",
     badgeColor: "#3b82f6",
+    github: "https://github.com/IshaanMittal07/ArcticAnalytics",
     overview: "Arctic Analytics is a robotics telemetry system that transforms raw sensor logs into real-time dashboards and AI-generated voice feedback for debugging and performance analysis.",
     highlights: [
       "Built a live telemetry dashboard for visualizing robot sensor data",
@@ -144,6 +147,7 @@ const PROJECTS = [
     subtitle: "Hospital Environmental Monitoring System",
     badge: "EMBEDDED",
     badgeColor: "#8b5cf6",
+    github: "https://github.com/1sarajoma/EnvironmentalRoomRegulator",
     overview: "An embedded monitoring system designed to reduce hospital-induced delirium by tracking environmental conditions and automating calming feedback systems.",
     highlights: [
       "Collected real-time temperature, humidity, sound, and proximity data",
@@ -162,6 +166,7 @@ const PROJECTS = [
     subtitle: "Pomodoro Study Tracker",
     badge: "WEB",
     badgeColor: "#f59e0b",
+    github: "https://github.com/1sarajoma/PomoPrep",
     overview: "PomoPrep is a productivity-focused study tracker that combines the Pomodoro technique with detailed subject-based study logging.",
     highlights: [
       "Built a Pomodoro timer with focus sessions and break cycles",
@@ -180,6 +185,7 @@ const PROJECTS = [
     subtitle: "Educational Sustainability Adventure Game",
     badge: "GAME",
     badgeColor: "#ef4444",
+    github: "https://github.com/1sarajoma/Sustainable-Saga",
     overview: "Sustainable Saga is a 2D educational adventure game that teaches sustainability concepts through exploration, platforming, and interactive quizzes.",
     highlights: [
       "Developed multiple gameplay systems including exploration and platformer mechanics",
@@ -198,6 +204,7 @@ const PROJECTS = [
     subtitle: "Interactive Portfolio Experience",
     badge: "WEB",
     badgeColor: "#f59e0b",
+    github: "https://github.com/1sarajoma/OmarPortfolio",
     overview: "A portfolio experience built around the Wii Sports interface — recreating its navigation style, texture assets, and interaction patterns using modern web technologies.",
     highlights: [
       "Engineered a custom sprite-sheet font renderer with canvas-based pixel measurement for authentic Wii typography",
@@ -218,6 +225,7 @@ export default function ProjectsPage() {
   const router = useRouter();
   const [entered, setEntered] = useState(false);
   const [backHovered, setBackHovered] = useState(false);
+  const [hoveredGithub, setHoveredGithub] = useState<string | null>(null);
 
   useEffect(() => { requestAnimationFrame(() => setEntered(true)); }, []);
 
@@ -400,6 +408,18 @@ export default function ProjectsPage() {
                   {proj.badge}
                 </span>
                 <WiiText text={proj.name} scale={1.2} glyphFilter="none" />
+                <a
+                  href={proj.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={() => setHoveredGithub(proj.id)}
+                  onMouseLeave={() => setHoveredGithub(null)}
+                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, opacity: 0.9, marginLeft: "0.6rem", padding: "4px", lineHeight: 0, position: "relative", zIndex: 5 }}
+                >
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" pointerEvents="all" style={{ display: "block", filter: hoveredGithub === proj.id ? "brightness(0.6)" : "none", transition: "filter 0.12s ease-out" }}>
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                </a>
               </div>
             </div>
 
