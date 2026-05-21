@@ -369,7 +369,7 @@ export default function Home() {
         className="absolute inset-0 w-full h-full object-cover"
         style={{ zIndex: 0, objectPosition: "center 20%" }}
       >
-        <source src="/Video Object Remover-1778799876000.mp4" type="video/mp4" />
+        <source src="/Video Object Remover-1778801829000.mp4" type="video/mp4" />
       </video>
 
       {/* ── Full-screen content ── */}
