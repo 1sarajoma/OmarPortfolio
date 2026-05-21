@@ -1,0 +1,3 @@
+err_dashboard.png: The main dashboard of the monitoring system, where staff can add patients or view current patients and their status.
+err_form.png: The form needed to be filled out when adding a new patient, which requires key information.
+err_patient.png: This page is opened when a specific patents card is clicked, and it shows details about them, and the condiitions of their room through set up sensors (humidity, sound, temperature).

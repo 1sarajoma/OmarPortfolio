@@ -330,6 +330,39 @@ const PROJECT_IMAGES: Record<string, { src: string; caption: string }[]> = {
     { src: "/project_images/pawprint/pp_profile.jpg", caption: "The profile of the pet, generated from the completed pet form." },
     { src: "/project_images/pawprint/pp_captions.jpg",caption: "Sample social media captions for the pet, optimized for different social media." },
   ],
+  "ecolens": [
+    { src: "/project_images/ecolens/el_features.jpg",  caption: "The overiew of offered features for EcoLens." },
+    { src: "/project_images/ecolens/el_scoring.jpg",   caption: "The result of an item being scanned, as a sustainablity summary and score is generated." },
+    { src: "/project_images/ecolens/el_stores.jpg",    caption: "The list of stores that offer the product, sorted by best value and sustainability." },
+    { src: "/project_images/ecolens/el_reciepts.jpg",  caption: "The result of a reciept being scanned, which shows possible swaps to items and the new costs." },
+  ],
+  "arctic": [
+    { src: "/project_images/arcticanalytics/aa_dashboard.jpg", caption: "The dashboard of the race result dashboard, which shows information like color detection and motor speed or comparison." },
+    { src: "/project_images/arcticanalytics/aa_robot2.jpg",    caption: "The created robot, an Arduino Uno R4 Minima was used with multiple sensors like distance and color sensors." },
+    { src: "/project_images/arcticanalytics/aa_robot1.jpg",    caption: "The front view of the created robot." },
+  ],
+  "envroom": [
+    { src: "/project_images/environmentalroomregulator/err_dashboard.png", caption: "The main dashboard of the monitoring system, where staff can add patients or view current patients and their status." },
+    { src: "/project_images/environmentalroomregulator/err_form.png",      caption: "The form needed to be filled out when adding a new patient, which requires key information." },
+    { src: "/project_images/environmentalroomregulator/err_patient.png",   caption: "This page is opened when a specific patents card is clicked, and it shows details about them, and the conditions of their room through set up sensors (humidity, sound, temperature)." },
+  ],
+  "pomoprep": [
+    { src: "/project_images/pomoprep/pop_subjects.png",         caption: "Here, you add subjects that you have and intend to study for. You need to add them here to access them later on." },
+    { src: "/project_images/pomoprep/pop_subjectselection.png", caption: "This is the pop-up shown after starting a session, where you select the subject you are studying." },
+    { src: "/project_images/pomoprep/pop_endsession.png",       caption: "At the end of your study session (following the pomodoro timer), you can either start another study cycle or end the session." },
+    { src: "/project_images/pomoprep/pop_enddetails.png",       caption: "If you end the session, you will be prompted to enter what you studied and additional notes." },
+    { src: "/project_images/pomoprep/pop_studyhistory.png",     caption: "A view for all of your subjects and their associated study sessions (which display cycles completed and sections studied)." },
+  ],
+  "saga": [
+    { src: "/project_images/sustainablesaga/ss_village.jpg", caption: "The main village for the game. Here, users can interact with NPCs, or access different areas of the map." },
+    { src: "/project_images/sustainablesaga/ss_sprite.jpg",  caption: "The main sprite for the user character, many different sprites were used for simple actions like walking." },
+    { src: "/project_images/sustainablesaga/ss_quiz.jpg",    caption: "The final quiz users complete after the boss fight, which reinforces sustainability principles." },
+  ],
+  "portfolio": [
+    { src: "/project_images/portfolio/mainmenu.png",      caption: "The landing page of the portfolio, this is where users can view my experience and details about me. They can open new pages like projects or experience as well." },
+    { src: "/project_images/portfolio/projectpage.png",   caption: "This is launched from the main menu. It shows projects I have worked on with descriptions and images." },
+    { src: "/project_images/portfolio/experiencepage.png",caption: "This is launched from the main menu. It shows my work experience through various internships and design teams." },
+  ],
 };
 
 /* ─── Page ─── */

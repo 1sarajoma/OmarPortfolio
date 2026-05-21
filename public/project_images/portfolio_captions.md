@@ -1,0 +1,3 @@
+mainmenu.png: The landing page of the portfolio, this is where users can view my experience and details about me. They can open new pages like projects or experience as well.
+projectpage.png: This is launched from the main menu. It shows projects I have worked on with descriptions and images.
+experiencepage.png: This is launched from the main menu. It shows my work experience through various internships and design teams.
